@@ -11,7 +11,7 @@ trigger:
 variables:
   vmImage: "ubuntu-16.04"
   repository: "survivorbat/terraform-scratch"
-  terraform_version: "0.12.20"
+  terraform_version: "0.11.4"
   tag: $(terraform_version)
   uid: "1000"
   gid: "1000"
