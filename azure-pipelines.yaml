@@ -10,9 +10,9 @@ trigger:
 
 variables:
   vmImage: "ubuntu-16.04"
-  tag: $(Build.BuildId)
   repository: "survivorbat/terraform-scratch"
   terraform_version: "0.12.20"
+  tag: $(terraform_version)
   uid: "1000"
   gid: "1000"
 
