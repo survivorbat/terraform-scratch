@@ -12,7 +12,7 @@ In case you wish to work on developing this image further, it's advisable to als
 
 ## Getting started
 
-Using this image is as simple as running `docker run -it --rm -v $(pwd)/app survivorbat/terraform-scratch <command>`. A few
+Using this image is as simple as running `docker run -it --rm -v $(pwd):/app survivorbat/terraform-scratch plan`.
 
 ### Development
 

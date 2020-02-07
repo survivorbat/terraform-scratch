@@ -20,6 +20,7 @@ WORKDIR /app
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /etc/passwd /etc/group /etc/shadow /etc/
+COPY --from=build --chown=terraform:terraform /tmp /tmp
 COPY --from=build --chown=terraform:terraform /app/terraform /bin/terraform
 
 USER terraform
