@@ -1,0 +1,46 @@
+trigger:
+  paths:
+    include:
+      - Dockerfile
+      - azure-pipelines.yaml
+  branches:
+    include:
+      - master
+      - develop
+
+variables:
+  vmImage: "ubuntu-16.04"
+  tag: $(Build.BuildId)
+  repository: "survivorbat/terraform-scratch"
+  terraform_version: "0.12.20"
+  uid: "1000"
+  gid: "1000"
+
+stages:
+  - stage: BuildAndPublish
+    displayName: Build and publish Image
+    jobs:
+      - job: BuildAndPublish
+        displayName: Build and Publish image
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - task: Docker@2
+            displayName: Build
+            inputs:
+              command: build
+              repository: $(repository)
+              arguments: --build-arg terraform_version=$(terraform_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
+              tags: |
+                $(tag)
+                latest
+          - task: Docker@2
+            displayName: Publish
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+            inputs:
+              containerRegistry: 'DockerHub'
+              command: push
+              repository: $(repository)
+              tags: |
+                $(tag)
+                latest
