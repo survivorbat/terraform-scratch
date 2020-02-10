@@ -41,8 +41,8 @@ stages:
               repository: $(repository)
               arguments: --target=alpine --build-arg terraform_version=$(terraform_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
               tags: |
-                $(tag)
-                latest
+                $(tag)-alpine
+                latest-alpine
           - task: Docker@2
             displayName: Publish scratch image
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
