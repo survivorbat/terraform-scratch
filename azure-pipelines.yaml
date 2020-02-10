@@ -39,7 +39,7 @@ stages:
             inputs:
               command: build
               repository: $(repository)
-              arguments: --target=scratch --build-arg terraform_version=$(terraform_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
+              arguments: --target=alpine --build-arg terraform_version=$(terraform_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
               tags: |
                 $(tag)
                 latest
