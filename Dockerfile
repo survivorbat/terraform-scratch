@@ -14,6 +14,8 @@ RUN addgroup -g ${gid} terraform \
  && chown -R terraform:terraform /app \
  && wget https://releases.hashicorp.com/terraform/${terraform_version}/terraform_${terraform_version}_linux_amd64.zip -O terraform.zip \
  && unzip terraform.zip \
+ && chown terraform:terraform /app/terraform \
+ && mv /app/terraform /bin/terraform \
  && apk --no-cache add \
    ca-certificates \
    curl
@@ -29,7 +31,7 @@ WORKDIR /app
 COPY --from=alpine /etc/ssl/certs /etc/ssl/certs
 COPY --from=alpine /etc/passwd /etc/group /etc/shadow /etc/
 COPY --from=alpine --chown=terraform:terraform /tmp /tmp
-COPY --from=alpine --chown=terraform:terraform /app/terraform /bin/terraform
+COPY --from=alpine --chown=terraform:terraform /bin/terraform /bin/terraform
 
 USER terraform
 
