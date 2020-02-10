@@ -12,3 +12,4 @@ help: ## Show the list of commands
 
 build: ## Build the image locally
 	docker build . -t survivorbat/terraform-scratch:development
+	docker build . -t survivorbat/terraform-scratch:development-alpine --target alpine
