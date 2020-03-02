@@ -11,8 +11,6 @@ trigger:
 variables:
   vmImage: "ubuntu-16.04"
   repository: "survivorbat/terraform-scratch"
-  terraform_version: "0.12.20"
-  tag: $(terraform_version)
   uid: "1000"
   gid: "1000"
 
@@ -22,6 +20,40 @@ stages:
     jobs:
       - job: BuildAndPublish
         displayName: Build and Publish image
+        strategy:
+          matrix:
+            v0.12.21:
+              terraform_version: 0.12.21
+            v0.12.20:
+              terraform_version: 0.12.20
+            v0.12.19:
+              terraform_version: 0.12.19
+            v0.12.18:
+              terraform_version: 0.12.18
+            v0.12.17:
+              terraform_version: 0.12.17
+            v0.12.16:
+              terraform_version: 0.12.16
+            v0.12.15:
+              terraform_version: 0.12.15
+            v0.12.14:
+              terraform_version: 0.12.14
+            v0.12.13:
+              terraform_version: 0.12.13
+            v0.12.12:
+              terraform_version: 0.12.12
+            v0.12.11:
+              terraform_version: 0.12.11
+            v0.12.10:
+              terraform_version: 0.12.10
+            v0.12.9:
+              terraform_version: 0.12.9
+            v0.12.8:
+              terraform_version: 0.12.8
+            v0.12.7:
+              terraform_version: 0.12.7
+            v0.12.6:
+              terraform_version: 0.12.6
         pool:
           vmImage: $(vmImage)
         steps:
