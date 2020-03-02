@@ -65,7 +65,6 @@ stages:
               arguments: --build-arg terraform_version=$(terraform_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
               tags: |
                 $(tag)
-                latest
           - task: Docker@2
             displayName: Build alpine image
             inputs:
@@ -74,7 +73,6 @@ stages:
               arguments: --target=alpine --build-arg terraform_version=$(terraform_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
               tags: |
                 $(tag)-alpine
-                latest-alpine
           - task: Docker@2
             displayName: Publish scratch image
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
@@ -84,7 +82,6 @@ stages:
               repository: $(repository)
               tags: |
                 $(tag)
-                latest
           - task: Docker@2
             displayName: Publish alpine image
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
@@ -94,4 +91,3 @@ stages:
               repository: $(repository)
               tags: |
                 $(tag)-alpine
-                latest-alpine
