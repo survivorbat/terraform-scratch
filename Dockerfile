@@ -18,7 +18,13 @@ RUN addgroup -g ${gid} terraform \
  && mv /app/terraform /bin/terraform \
  && apk --no-cache add \
    ca-certificates \
-   curl
+   curl \
+   # Ansible related binaries
+   git \
+   ansible \
+   openssh \
+   ansible-lint \
+   && pip3 install docker dnspython
 
 USER terraform
 

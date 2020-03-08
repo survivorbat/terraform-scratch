@@ -5,9 +5,11 @@
 This repository contains a relatively simple Dockerfile to build a small but practical docker container containing the terraform
 framework.
 
+It also possesses an alpine-variant that contains Ansible binaries to use in a local_exec.
+
 ## Prerequisites
 
-You'll need Docker installed to use this image. 
+You'll need Docker installed to use this image.
 In case you wish to work on developing this image further, it's advisable to also have Make installed to utilise the Makefile.
 
 ## Getting started
