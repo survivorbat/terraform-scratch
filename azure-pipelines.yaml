@@ -22,8 +22,10 @@ stages:
         displayName: Build and Publish image
         strategy:
           matrix:
-            v0.12.24:
-              terraform_version: 0.12.24
+            v0.12.26:
+              terraform_version: 0.12.26
+            v0.12.25:
+              terraform_version: 0.12.25
         pool:
           vmImage: $(vmImage)
         steps:
