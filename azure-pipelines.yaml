@@ -1,12 +1,7 @@
 trigger:
-  paths:
+  tags:
     include:
-      - Dockerfile
-      - azure-pipelines.yaml
-  branches:
-    include:
-      - master
-      - develop
+      - "*.*.*"
 
 variables:
   vmImage: "ubuntu-16.04"
@@ -14,18 +9,15 @@ variables:
   uid: "1000"
   gid: "1000"
 
+  # The tag will be the version
+  terraform_version: $(Build.SourceBranchName)
+
 stages:
   - stage: BuildAndPublish
     displayName: Build and publish Image
     jobs:
       - job: BuildAndPublish
         displayName: Build and Publish image
-        strategy:
-          matrix:
-            v0.12.26:
-              terraform_version: 0.12.26
-            v0.12.25:
-              terraform_version: 0.12.25
         pool:
           vmImage: $(vmImage)
         steps:
